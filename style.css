@@ -1,3 +1,58 @@
+:root {
+  --red: #FF0000;
+  --redA: #FF0000AA;
+  --blue: #0000FF;
+  --blueA: #0000FFAA;
+}
+
+body {
+  background-color: #424242;
+  color: #e6e6e6;
+}
+
 .title {
   font-size: 4em;
+  font-weight: 800;
+}
+
+.bank-amount {
+  height: 3em;
+  background-color: #50a859;
+  width: 33%;
+  margin: 0 33%;
+  padding: 0.75em 1em;
+}
+
+.team-container {
+  min-height: 3em;
+  padding: 1em 2em;
+  width: 75%;
+  border-radius: 20px;
+  margin: 1em;
+}
+
+.bet-btn {
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: #AAAAAAAA;
+  width: 75%;
+  font-size: 1.5em;
+  margin: 0.5em;
+  font-weight: bold;
+}
+
+.red-txt {
+  color: var(--red);
+}
+
+.blue-txt {
+  color: var(--blue);
+}
+
+.red-bg {
+  background-color: var(--redA);
+}
+
+.blue-bg {
+  background-color: var(--blueA);
 }
