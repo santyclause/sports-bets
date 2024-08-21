@@ -25,8 +25,9 @@ body {
 }
 
 .team-container {
-  min-height: 3em;
-  padding: 1em 2em;
+  font-size: 2em;
+  min-height: 3rem;
+  padding: 1rem 1rem;
   width: 75%;
   border-radius: 20px;
   margin: 1em;

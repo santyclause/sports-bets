@@ -23,6 +23,24 @@ const players = [
   { team: 'blue', player: '🦄', skill: 98, name: 'Celestia' }
 ]
 
+function newGame() {
+  let redTeamCount = 0;
+  let blueTeamCount = 0;
+  players.forEach((player) => {
+    let rand = Math.round(Math.random());
+    if (rand == 1 && blueTeamCount < 10) {
+      player.team = 'blue';
+      blueTeamCount++;
+      console.log(blueTeamCount);
+    } else if (redTeamCount < 10) {
+      player.team = 'red';
+      redTeamCount++;
+    } else {
+      player.team = 'blue';
+    }
+  })
+}
+
 function drawTeams() {
   let redTeamElem = document.getElementById("red-team");
   let blueTeamElem = document.getElementById("blue-team");
@@ -30,7 +48,6 @@ function drawTeams() {
   let blueTeam = "";
 
   players.forEach((player) => {
-    console.log(player.team);
     if (player.team == 'red') {
       redTeam += player.player;
     } else {
@@ -42,4 +59,5 @@ function drawTeams() {
   blueTeamElem.innerText = blueTeam;
 }
 
+newGame();
 drawTeams();
