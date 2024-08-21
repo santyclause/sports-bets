@@ -31,7 +31,6 @@ function newGame() {
     if (rand == 1 && blueTeamCount < 10) {
       player.team = 'blue';
       blueTeamCount++;
-      console.log(blueTeamCount);
     } else if (redTeamCount < 10) {
       player.team = 'red';
       redTeamCount++;
@@ -59,5 +58,28 @@ function drawTeams() {
   blueTeamElem.innerText = blueTeam;
 }
 
+function calculateWinner() {
+  let redSkillTotal = 0;
+  let blueSkillTotal = 0;
+
+  players.forEach((player) => {
+    if (player.team == 'red') {
+      redSkillTotal += player.skill;
+    } else {
+      blueSkillTotal += player.skill;
+    }
+  })
+
+  if (redSkillTotal > blueSkillTotal) {
+    console.log("WINNER: RED");
+  } else if (blueSkillTotal > redSkillTotal) {
+    console.log("WINNER: BLUE");
+  } else {
+    console.log("TIE GAME");
+  }
+  console.log("SCORES: ", redSkillTotal, blueSkillTotal);
+}
+
 newGame();
 drawTeams();
+calculateWinner();

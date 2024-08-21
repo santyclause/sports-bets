@@ -16,10 +16,19 @@
     <span class="title">ERSB</span><span> Extremely Realistic Sports Bets</span>
   </header>
   <main class="container">
-    <section class="row justify-content-center">
-      <div class="col-6 text-center">
+    <section class="row">
+      <div id="result" class="col title text-center">
+        <!-- NOTE Bet result goes here -->
+      </div>
+    </section>
+    <section class="row justify-content-center mb-5">
+      <div class="col-md-6 text-center">
         <h4>Bank</h4>
-        <div class="bank-amount">$200</div>
+        <div id="bank-amount" class="bank-amount">$200</div>
+      </div>
+      <div class="col-md-6 text-center">
+        <h4>Current Bet</h4>
+        <div id="bet-amount" class="bet-amount">$0</div>
       </div>
     </section>
     <section class="row">
@@ -38,39 +47,39 @@
       <div class="col-md-6">
         <section class="row">
           <div class="col-md-4 text-center">
-            <div class="btn bet-btn">Bet 5</div>
+            <div onclick="bet(5)" class="btn bet-btn">Bet 5</div>
           </div>
           <div class="col-md-4 text-center">
-            <div class="btn bet-btn">Bet 25</div>
+            <div onclick="bet(25)" class="btn bet-btn">Bet 25</div>
           </div>
           <div class="col-md-4 text-center">
-            <div class="btn bet-btn">Bet 100</div>
+            <div onclick="bet(100)" class="btn bet-btn">Bet 100</div>
           </div>
           <div class="col-12 text-center">
-            <div class="btn bet-btn">All In</div>
+            <div onclick="bet()" class="btn bet-btn">All In</div>
           </div>
         </section>
       </div>
       <div class="col-md-6">
         <section class="row">
           <div class="col-md-4 text-center">
-            <div class="btn bet-btn">Bet 5</div>
+            <div onclick="bet(5)" class="btn bet-btn">Bet 5</div>
           </div>
           <div class="col-md-4 text-center">
-            <div class="btn bet-btn">Bet 25</div>
+            <div onclick="bet(25)" class="btn bet-btn">Bet 25</div>
           </div>
           <div class="col-md-4 text-center">
-            <div class="btn bet-btn">Bet 100</div>
+            <div onclick="bet(100)" class="btn bet-btn">Bet 100</div>
           </div>
           <div class="col-12 text-center">
-            <div class="btn bet-btn">All In</div>
+            <div onclick="bet()" class="btn bet-btn">All In</div>
           </div>
         </section>
       </div>
     </section>
     <section class="row">
-      <div>
-        <!-- NOTE Bet result goes here -->
+      <div class="col d-flex justify-content-center">
+        <div onclick=(submitBet()) class="btn submit-btn">SUBMIT</div>
       </div>
     </section>
   </main>
