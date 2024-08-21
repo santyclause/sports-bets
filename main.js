@@ -1,4 +1,4 @@
-let bank = 100;
+let bank = 200;
 
 const players = [
   { team: 'red', player: '🐀', skill: 100, name: 'Lurk' },
@@ -23,3 +23,23 @@ const players = [
   { team: 'blue', player: '🦄', skill: 98, name: 'Celestia' }
 ]
 
+function drawTeams() {
+  let redTeamElem = document.getElementById("red-team");
+  let blueTeamElem = document.getElementById("blue-team");
+  let redTeam = "";
+  let blueTeam = "";
+
+  players.forEach((player) => {
+    console.log(player.team);
+    if (player.team == 'red') {
+      redTeam += player.player;
+    } else {
+      blueTeam += player.player;
+    }
+  })
+
+  redTeamElem.innerText = redTeam;
+  blueTeamElem.innerText = blueTeam;
+}
+
+drawTeams();
