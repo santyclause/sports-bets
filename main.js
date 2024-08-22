@@ -1,4 +1,8 @@
 let bank = 200;
+let currentBet = 0;
+let betTeam = '';
+let redSkillTotal = 0;
+let blueSkillTotal = 0;
 
 const players = [
   { team: 'red', player: '🐀', skill: 100, name: 'Lurk' },
@@ -23,9 +27,52 @@ const players = [
   { team: 'blue', player: '🦄', skill: 98, name: 'Celestia' }
 ]
 
+function bet(amount, team) {
+  let betElem = document.getElementById("bet-amount");
+
+  if (confirmTeam(team)) {
+    currentBet += amount;
+    if (currentBet > bank) {
+      currentBet = bank;
+    }
+
+    betElem.innerText = currentBet;
+  }
+}
+
+function confirmTeam(team) {
+  if (betTeam != '') {
+    if (betTeam == team) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    betTeam = team;
+    document.getElementById('bet-amount-cont').style.backgroundColor = team;
+    return true;
+  }
+}
+
+function submitBet() {
+  let bankElem = document.getElementById("bank-amount");
+  let betElem = document.getElementById("bet-amount");
+  let betElemCont = document.getElementById("bet-amount-cont");
+
+  calculateWinner(betTeam);
+
+  currentBet = 0;
+  bankElem.innerText = bank;
+  betElem.innerText = currentBet;
+  betElemCont.style.backgroundColor = "#92a00f";
+  betTeam = '';
+}
+
 function newGame() {
   let redTeamCount = 0;
   let blueTeamCount = 0;
+  redSkillTotal = 0;
+  blueSkillTotal = 0;
   players.forEach((player) => {
     let rand = Math.round(Math.random());
     if (rand == 1 && blueTeamCount < 10) {
@@ -38,6 +85,7 @@ function newGame() {
       player.team = 'blue';
     }
   })
+  drawTeams();
 }
 
 function drawTeams() {
@@ -58,9 +106,10 @@ function drawTeams() {
   blueTeamElem.innerText = blueTeam;
 }
 
-function calculateWinner() {
-  let redSkillTotal = 0;
-  let blueSkillTotal = 0;
+function calculateWinner(betOnTeam) {
+  let winner;
+  let resultElem = document.getElementById('result')
+  let statsElem = document.getElementById('stats')
 
   players.forEach((player) => {
     if (player.team == 'red') {
@@ -70,16 +119,58 @@ function calculateWinner() {
     }
   })
 
+  checkForTeamwork();
+
   if (redSkillTotal > blueSkillTotal) {
-    console.log("WINNER: RED");
+    winner = 'red';
   } else if (blueSkillTotal > redSkillTotal) {
-    console.log("WINNER: BLUE");
+    winner = 'blue';
   } else {
-    console.log("TIE GAME");
+    winner = 'none';
   }
-  console.log("SCORES: ", redSkillTotal, blueSkillTotal);
+
+  if (betOnTeam == winner) {
+    resultElem.innerText = "WINNER!";
+    bank += currentBet;
+  } else if (winner == 'none') {
+    resultElem.innerText = "TIE GAME";
+    bank -= currentBet / 2;
+  } else {
+    resultElem.innerText = "LOSER!";
+    bank -= currentBet;
+  }
+
+  let finalPointPlayer = determineFinalPoint(winner);
+  statsElem.innerHTML = `<p>Final Score: ${redSkillTotal} vs ${blueSkillTotal}</p><p>Final point scored by: ${finalPointPlayer.player} ${finalPointPlayer.name}</p>`
+
+  newGame();
+}
+
+function checkForTeamwork() {
+  let rat = players[0];
+  let wolf = players[1];
+  let cat = players[11];
+  if (rat.team == cat.team) {
+    if (rat.team == 'red') {
+      redSkillTotal -= 150;
+    } else {
+      blueSkillTotal -= 150;
+    }
+  }
+
+  if (rat.team == wolf.team) {
+    if (rat.team == 'red') {
+      redSkillTotal += 100;
+    } else {
+      blueSkillTotal += 100;
+    }
+  }
+}
+
+function determineFinalPoint(winner) {
+  let winningPlayers = players.filter((winningPlayer) => winningPlayer.team == winner);
+  let rand = Math.floor(Math.random() * winningPlayers.length);
+  return winningPlayers[rand];
 }
 
 newGame();
-drawTeams();
-calculateWinner();

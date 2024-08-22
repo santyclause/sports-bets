@@ -17,18 +17,21 @@
   </header>
   <main class="container">
     <section class="row">
-      <div id="result" class="col title text-center">
+      <div id="result" class="col-12 title text-center">
         <!-- NOTE Bet result goes here -->
+      </div>
+      <div id="stats" class="col-12 text-center">
+        <!-- NOTE Special stats go here-->
       </div>
     </section>
     <section class="row justify-content-center mb-5">
       <div class="col-md-6 text-center">
         <h4>Bank</h4>
-        <div id="bank-amount" class="bank-amount">$200</div>
+        <div class="bank-amount">$<span id="bank-amount">200</span></div>
       </div>
       <div class="col-md-6 text-center">
         <h4>Current Bet</h4>
-        <div id="bet-amount" class="bet-amount">$0</div>
+        <div id="bet-amount-cont" class="bet-amount">$<span id="bet-amount">0</span></div>
       </div>
     </section>
     <section class="row">
@@ -47,32 +50,32 @@
       <div class="col-md-6">
         <section class="row">
           <div class="col-md-4 text-center">
-            <div onclick="bet(5)" class="btn bet-btn">Bet 5</div>
+            <div onclick="bet(5, 'red')" class="btn bet-btn">Bet 5</div>
           </div>
           <div class="col-md-4 text-center">
-            <div onclick="bet(25)" class="btn bet-btn">Bet 25</div>
+            <div onclick="bet(25, 'red')" class="btn bet-btn">Bet 25</div>
           </div>
           <div class="col-md-4 text-center">
-            <div onclick="bet(100)" class="btn bet-btn">Bet 100</div>
+            <div onclick="bet(100, 'red')" class="btn bet-btn">Bet 100</div>
           </div>
           <div class="col-12 text-center">
-            <div onclick="bet()" class="btn bet-btn">All In</div>
+            <div onclick="bet(bank, 'red')" class="btn bet-btn">All In</div>
           </div>
         </section>
       </div>
       <div class="col-md-6">
         <section class="row">
           <div class="col-md-4 text-center">
-            <div onclick="bet(5)" class="btn bet-btn">Bet 5</div>
+            <div onclick="bet(5, 'blue')" class="btn bet-btn">Bet 5</div>
           </div>
           <div class="col-md-4 text-center">
-            <div onclick="bet(25)" class="btn bet-btn">Bet 25</div>
+            <div onclick="bet(25, 'blue')" class="btn bet-btn">Bet 25</div>
           </div>
           <div class="col-md-4 text-center">
-            <div onclick="bet(100)" class="btn bet-btn">Bet 100</div>
+            <div onclick="bet(100, 'blue')" class="btn bet-btn">Bet 100</div>
           </div>
           <div class="col-12 text-center">
-            <div onclick="bet()" class="btn bet-btn">All In</div>
+            <div onclick="bet(bank, 'blue')" class="btn bet-btn">All In</div>
           </div>
         </section>
       </div>
